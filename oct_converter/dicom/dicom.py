@@ -249,7 +249,9 @@ def write_opt_dicom(
         per_frame.append(frame_fgs)
     ds.PerFrameFunctionalGroupsSequence = per_frame
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath, implicit_vr=False, little_endian=True, enforce_file_format=True)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 
@@ -312,7 +314,9 @@ def write_fundus_dicom(
     ds.Columns = pixel_data.shape[1]
 
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath, implicit_vr=False, little_endian=True, enforce_file_format=True)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 
@@ -376,7 +380,9 @@ def write_color_fundus_dicom(
     ds.Columns = pixel_data.shape[1]
 
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath, implicit_vr=False, little_endian=True, enforce_file_format=True)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 

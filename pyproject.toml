@@ -23,7 +23,7 @@ dependencies = [
     "natsort",
     "numpy",
     "opencv-python",
-    "pydicom",
+    "pydicom>3",
     "matplotlib",
     "imageio-ffmpeg",
     "h5py",
