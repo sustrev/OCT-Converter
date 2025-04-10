@@ -46,8 +46,6 @@ def opt_base_dicom(filepath: Path) -> Dataset:
 
     # Create the FileDataset instance with file meta, preamble and empty DS
     ds = FileDataset(str(filepath), {}, file_meta=file_meta, preamble=b"\0" * 128)
-    ds.is_little_endian = True
-    ds.is_implicit_VR = False  # Explicit VR
     return ds
 
 
@@ -251,7 +249,9 @@ def write_opt_dicom(
         per_frame.append(frame_fgs)
     ds.PerFrameFunctionalGroupsSequence = per_frame
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 
@@ -314,7 +314,9 @@ def write_fundus_dicom(
     ds.Columns = pixel_data.shape[1]
 
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 
@@ -378,7 +380,9 @@ def write_color_fundus_dicom(
     ds.Columns = pixel_data.shape[1]
 
     ds.PixelData = pixel_data.tobytes()
-    ds.save_as(filepath)
+    ds.save_as(
+        filepath, implicit_vr=False, little_endian=True, enforce_file_format=True
+    )
     return filepath
 
 
